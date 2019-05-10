@@ -155,7 +155,7 @@ import GenerateForm from './GenerateForm'
 import Clipboard from 'clipboard'
 import {basicComponents, layoutComponents, advanceComponents} from './componentsConfig.js'
 import {loadJs, loadCss} from '../util/index.js'
-import request from '../util/request.js'
+// import request from '../util/request.js'
 import generateCode from './generateCode.js'
 
 export default {

@@ -153,7 +153,7 @@
         </template>
 
         <template v-if="element.type=='tree'">
-
+          <el-tree :data="treeData" :props="defaultTreeProps"></el-tree>
         </template>
 
         <template v-if="element.type=='chart'">
@@ -224,7 +224,46 @@ export default {
   },
   data () {
     return {
-      selectWidget: this.select
+      selectWidget: this.select,
+       treeData: [{
+          label: '一级 1',
+          children: [{
+            label: '二级 1-1',
+            children: [{
+              label: '三级 1-1-1'
+            }]
+          }]
+        }, {
+          label: '一级 2',
+          children: [{
+            label: '二级 2-1',
+            children: [{
+              label: '三级 2-1-1'
+            }]
+          }, {
+            label: '二级 2-2',
+            children: [{
+              label: '三级 2-2-1'
+            }]
+          }]
+        }, {
+          label: '一级 3',
+          children: [{
+            label: '二级 3-1',
+            children: [{
+              label: '三级 3-1-1'
+            }]
+          }, {
+            label: '二级 3-2',
+            children: [{
+              label: '三级 3-2-1'
+            }]
+          }]
+        }],
+        defaultTreeProps: {
+          children: 'children',
+          label: 'label'
+        }
     }
   },
   mounted () {

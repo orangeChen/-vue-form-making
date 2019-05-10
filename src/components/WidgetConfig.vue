@@ -289,6 +289,11 @@
         <el-form-item label="表格是否多选">
           <el-checkbox v-model="data.options.filterMultiple">是否多选</el-checkbox>
         </el-form-item>
+        <el-form-item label="接口地址">
+          <el-input v-model="data.ajaxUrl">
+            <el-button slot="append" icon="el-icon-search" @click="ajaxDataFn"></el-button>
+          </el-input>
+        </el-form-item>
         <el-form-item label="column列字段信息">
           <draggable tag="ul" :list="data.options.options" 
                 v-bind="{group:{ name:'options'}, ghostClass: 'ghost',handle: '.drag-item'}"
@@ -384,7 +389,7 @@ export default {
         range: null,
         length: null
       },
-      tableField:['id','date','name','address'],
+      tableField:[],
       tableFieldFilterFc:['dataTimeYMDFc','dataTimeYMDHMSFc']
     }
   },
@@ -397,6 +402,16 @@ export default {
     }
   },
   methods: {
+    ajaxDataFn(){//获取接口字段
+      let vm = this
+      http.get(vm.data.ajaxUrl).then(function (xhr) {
+        let data = xhr.data.aaData[0]
+        for(let i in data){
+          vm.tableField.push(i)
+        }
+      })
+     
+    },
     handleOptionsRemove (index) {
       if (this.data.type === 'grid') {
         this.data.columns.splice(index, 1)
